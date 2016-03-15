@@ -15,7 +15,27 @@
 /////////////////////////////////////////////////////////////
 
 var findPivotedWord = function (array, start, end) {
-  // TODO: IMPLEMENT
+  // variant of binary search
+  //check input
+  var start = start || 0;
+  var end = end || array.length-1;
+  var mid = Math.floor((end - start)/2 + start);
+  //base cases
+  if (end - start <= 1) {
+    if (array[start] < array[end]) return null;
+    return start;
+  }
+  if (array[mid] > array[mid+1]) {
+    return mid;
+  } else { // recursive cases
+    // check each sub array for pivot point
+    if (array[start] > array[mid]) {
+      // then left subarray is shifted
+      return findPivotedWord(array, start, mid);
+    } else {
+      return findPivotedWord(array, mid+1, end);
+    }
+  }
 };
 
 /////////////////////////////////////////////////////////////
