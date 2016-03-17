@@ -16,7 +16,15 @@
 var testCase = [123, 12345, 1, 2, 543, 41];
 
 var houseRobbers = function (houses) {
-  // TODO: Implement me!
+  var cumsum = [];
+  for (var i=0; i<houses.length; i++){
+
+    cumsum[i] = Math.max(cumsum[i-1] || 0,
+                         (cumsum[i-2] || 0) + houses[i],
+                         (cumsum[i-3] || 0) + houses[i]);
+
+  }
+  return cumsum.pop()
 };
 
 console.log(houseRobbers(testCase) === 12888);
